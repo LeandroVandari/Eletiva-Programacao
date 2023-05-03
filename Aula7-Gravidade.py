@@ -1,5 +1,6 @@
 import pygame
 import math
+import random
 
 
 pygame.init()
@@ -35,12 +36,28 @@ class Planet:
         self.x_vel = 0
         self.y_vel = 0
 
+        self.x_distance_to_sun = 0
+        self.y_distance_to_sun = 0
+
+        self.accel_x = (G*sun.mass)/self.distance_to_sun**2
+        self.accel_y = (G*sun.mass)/self.distance_to_sun**2
+
+        self.forca = 0
+
     def draw(self):
         pygame.draw.circle(WIN, self.color, (self.x, self.y), self.radius)
+    def distance_to(self, other_planet):
+        return math.sqrt((self.x - other_planet.x) ** 2 + (self.y - other_planet.y) ** 2)
+    def update_distance_to_sun(sun):
+        self.x_distance_to_sun = self.x - sun.x
+    def update_vel(self):
+        self.x_vel += self.accel_x
+        self.y_vel += self.accel_y
+    
 
-planets = []
-earth = Planet(100, 100, 20, BLUE, 10)
-planets.append(earth)
+planets = [mercury := Planet(WIDTH/2 + 100, HEIGHT/2, 4, DARK_GREY, 1000), venus := Planet(WIDTH/2 + 200, HEIGHT/2, 10, RED, 1000), earth := Planet(300 + (WIDTH / 2), HEIGHT/ 2, 20, BLUE, 10)]
+sun = Planet(WIDTH/2, HEIGHT/2, 40, YELLOW, 1000)
+sun.sun = True
 running = True
 clock = pygame.time.Clock()
 while running:
@@ -57,8 +74,15 @@ while running:
             # fill the screen with a color to wipe away anything from last frame
             for planet in planets:
                 planet.draw()
+                planet.distance_to_sun = planet.distance_to(sun)
                 
+                print(planet.distance_to_sun)
+                """ planet.x += random.randint(-1, 1)
+                planet.y += random.randint(-1, 1) """
+            sun.draw()
                 
+            earth.x_vel = 1
+            earth.y_vel = 1
                 
 
             # RENDER YOUR GAME HERE
