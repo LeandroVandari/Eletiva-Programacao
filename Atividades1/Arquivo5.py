@@ -145,7 +145,7 @@ def main():
                 print(new_planet_pos)
                 random_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
                 mass = time_since_click * 10**(time_since_click//100)
-                new_planet = Planet(x / 260 * Planet.AU, y / 260 * Planet.AU, mass // 2** (time_since_click/100), (0, 255, 0), mass)
+                new_planet = Planet(x / 260 * Planet.AU, y / 260 * Planet.AU, mass // 2** time_since_click, (0, 255, 0), mass)
                 new_x, new_y = pygame.mouse.get_pos()
                 new_x -= 400
                 new_y -= 400
