@@ -140,20 +140,20 @@ def main():
             if mouse_pressed:
                 time_since_click = create_planet_start.tick()
                 x, y = new_planet_pos
-                x -= 400
-                y -= 400
-                print(new_planet_pos)
+                x -= WIDTH / 2
+                y -= HEIGHT / 2
+                
                 random_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-                mass = time_since_click * 10**(time_since_click//100)
-                new_planet = Planet(x / 260 * Planet.AU, y / 260 * Planet.AU, mass // 2** time_since_click, (0, 255, 0), mass)
+                mass = 10**20 * math.sqrt(time_since_click)
+                print(new_planet_pos, mass)
+                new_planet = Planet(x / 260 * Planet.AU, y / 260 * Planet.AU, math.sqrt(time_since_click), random_color, mass)
                 new_x, new_y = pygame.mouse.get_pos()
-                new_x -= 400
-                new_y -= 400
+                new_x -= WIDTH / 2
+                new_y -= HEIGHT / 2
                 new_planet.y_vel = (y - new_y) * 100
                 new_planet.x_vel = (x - new_x) * 100
                 planets.append(new_planet)
                 mouse_pressed = False
-        print(mouse_pressed)
         
 
 
