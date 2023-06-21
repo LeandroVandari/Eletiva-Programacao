@@ -1,4 +1,0 @@
-Termos:
-	Inteligência Artificial: Programa que consegue agir de maneira parecida com humanos.
-	Machine Learning: Programa que melhora ao longo do tempo a partir de mais dados.
-Soma dos valores da input, multiplicados por seu peso. Depois, adicionar o viés (para ser maior do que 10, subtrair 10), e colocar na função sigmoide o resultado.
