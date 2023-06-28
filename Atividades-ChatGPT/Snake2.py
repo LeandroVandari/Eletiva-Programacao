@@ -17,7 +17,10 @@ import random
         # Por que o chat gpt fez esse erro: 
                 #1.  Não sabe como funciona a função set_timer, "imaginou" pelo seu nome e usos que o mais provável fosse que fizesse um evento apenas uma vez depois de um tempo.
                 #2.  Não entende como funcionam os eventos, mas, já que usou "set_timer" lá em cima, sabe que tem que ouvir o evento, mas já que já gerou o código de cima, ouve embaixo. Porém, pelo motivo dito acima, não funciona         
-
+# ERRO 4: Maçã especial sumia quando comia maçã normal
+        # Motivo: Quando jogador come a maçã normal, a variável que dizia se a maçã especial foi criada era modificada para False, portanto, ela sumia
+        # Solução: Remover a mudança da variável da maçã especial quando o jogador come a maçã normal
+        # Por que o chat gpt fez esse erro: Já que o jogador colidiu com a maçã, é provável que uma variável com "apple" e "spawned" no nome seja mudada, por isso, ele a coloca para False.
 # Initialize Pygame
 pygame.init()
 
@@ -126,7 +129,7 @@ while True:
     if snake_position[0] == food_position[0] and snake_position[1] == food_position[1]:
         score += 1
         food_spawned = False
-        special_apple_spawned = False
+        #special_apple_spawned = False        Apaguei linha que fazia a maçã especial aparecer em um novo lugar quando comia a maçã normal
     else:
         snake_body.pop()
 
